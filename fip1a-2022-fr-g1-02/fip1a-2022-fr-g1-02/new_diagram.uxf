@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <help_text>// Uncomment the following line to change the fontsize and font: 
+// fontsize=14
+// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>192</x>
+      <y>136</y>
+      <w>608</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>opinion::SocialNetwork
+--
+-nbMembers = 0: int
+-nbBooks = 0: int
+-nbFilms = 0: int
+-members = new LinkedList&lt;Member&gt;(): LinkedList&lt;Member&gt;
+-items = new LinkedList&lt;Item&gt;(): LinkedList&lt;Item&gt;
+--
++nbMembers(): int
++nbFilms(): int
++nbBooks(): int
++addMember(String login, String password, String profile): void
++addItemFilm(String login, String password, String title, String kind, String director, String scriptwriter, int duration): void
++addItemBook(String login, String password, String title, String kind, String author, int nbPages): void
++reviewItemFilm(String login, String password, String title, float mark, String comment): float
++reviewItemBook(String login, String password, String title, float mark, String comment): float
++consultItems(String title): LinkedList&lt;String&gt;
++reviewOpinion(String login1, String password, String title, String typeItem, String login2, float mark): float
++toString(): String
++main(String[] args): void
++getKarma(String login): float
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>792</y>
+      <w>376</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>opinion::Review
+--
+-mark: float
+-avgMark: float
+-loginKarma: float
+-comment: String
+-login: String
+-reviewOpinions: LinkedList&lt;String&gt;
+--
++Review(float mark, String comment, String login, float loginKarma): ctor
++markReviewUpdate(String pseudo1, float note): void
++getLogin(): String
++getMark(): float
++getLoginKarma(): float
++getAvgMark(): float
++memberAlreadyReviewOpinion(String pseudo1): boolean
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1264</x>
+      <y>800</y>
+      <w>312</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>opinion::Member
+--
+-login, password, profile: String
+-karma: float
+-nbMarkKarma: int
+--
++Member(String login, String password, String profile): ctor
++isMember(String login): Member
++isPassword(String password): boolean
++updateKarma(float mark): void
++getKarma(): float
++getLogin(): String
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>560</y>
+      <w>440</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>opinion::ItemFilm
+--
+-director, scriptwriter: String
+~duration: int
+--
++ItemFilm(String title, String kind, String director, String scriptwriter, int duration): ctor
++toString(): String
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>560</y>
+      <w>344</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>opinion::ItemBook
+--
+-author: String
+-nbPages: int
+--
++ItemBook(String title, String author, String kind, int nbPages): ctor
++toString(): String
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>192</x>
+      <y>784</y>
+      <w>384</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>opinion::Item
+--
+#title: String
+#kind: String
+#avgMarks: float
+#reviews = new LinkedList(): LinkedList&lt;Review&gt;
+--
++isItem(String title): boolean
++isMemberReview(String login): boolean
++memberAlreadyReviewOpinion(String pseudo1, String pseudo2): boolean
++addMarkToReview(String login1, String login2, float mark): void
++getTitle(): String
++getAvgMrks(): float
++avgMarks(): float
++addReview(String login, String comment, float mark): void
++removeReview(String login, String comment, float mark): void
++getNoteReview(String pseudo1, String pseudo2): float
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1104</x>
+      <y>144</y>
+      <w>528</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+opinion::ISocialNetworkPremium
+--
+--
++reviewOpinion(String login1, String password, String title, String typeItem, String login2, float mark): float
++getKarma(String login): float
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1160</x>
+      <y>384</y>
+      <w>600</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+opinion::ISocialNetwork
+--
+--
++nbMembers(): int
++nbFilms(): int
++nbBooks(): int
++addMember(String login, String password, String profile): void
++addItemFilm(String login, String password, String title, String kind, String director, String scenarist, int duration): void
++addItemBook(String login, String password, String title, String kind, String author, int nbPages): void
++reviewItemFilm(String login, String password, String title, float mark, String comment): float
++reviewItemBook(String login, String password, String title, float mark, String comment): float
++consultItems(String title): LinkedList&lt;String&gt;
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1456</x>
+      <y>280</y>
+      <w>24</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1400</x>
+      <y>312</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>extends
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>184</y>
+      <w>328</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;implement&gt;&gt;</panel_attributes>
+    <additional_attributes>390.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>416</x>
+      <y>416</y>
+      <w>24</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>424</x>
+      <y>424</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>424</x>
+      <y>528</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Films
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>672</y>
+      <w>24</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>696</y>
+      <w>504</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;610.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>688</y>
+      <w>24</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>416</x>
+      <y>752</y>
+      <w>80</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>extends
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>568</x>
+      <y>904</y>
+      <w>168</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>624</x>
+      <y>896</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>-liste de reviews
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>576</x>
+      <y>888</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>680</x>
+      <y>912</y>
+      <w>80</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>reviews
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1088</x>
+      <y>848</y>
+      <w>192</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1096</x>
+      <y>832</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>*
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1240</x>
+      <y>832</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>416</y>
+      <w>24</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>736</x>
+      <y>424</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>760</x>
+      <y>520</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>*
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>344</y>
+      <w>328</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;390.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1096</x>
+      <y>352</y>
+      <w>24</w>
+      <h>384</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;460.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1096</x>
+      <y>704</y>
+      <w>328</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;390.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1400</x>
+      <y>712</y>
+      <w>24</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>328</y>
+      <w>360</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;430.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1128</x>
+      <y>336</y>
+      <w>24</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;430.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1128</x>
+      <y>664</y>
+      <w>336</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;400.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1440</x>
+      <y>672</y>
+      <w>24</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>800</x>
+      <y>320</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>1 Longin/Mdp
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>800</x>
+      <y>368</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>912</x>
+      <y>328</y>
+      <w>120</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>checkReview
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>920</x>
+      <y>360</y>
+      <w>120</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>connexion
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1264</x>
+      <y>768</y>
+      <w>184</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Résultat authentification 1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1448</x>
+      <y>768</y>
+      <w>120</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
